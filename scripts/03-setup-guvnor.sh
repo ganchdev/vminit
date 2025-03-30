@@ -32,8 +32,8 @@ if ! command -v envsubst &> /dev/null; then
 fi
 
 # Render service template
-TEMPLATE_PATH="$SCRIPT_DIR/templates/service.yml.template"
-OUTPUT_PATH="/etc/guvnor/services/$APP_NAME.yml"
+TEMPLATE_PATH="$SCRIPT_DIR/templates/service.yaml.template"
+OUTPUT_PATH="/etc/guvnor/services/$APP_NAME.yaml"
 mkdir -p "$(dirname "$OUTPUT_PATH")"
 
 # Confirm the values are exported
