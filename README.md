@@ -2,6 +2,18 @@
 
 A collection of scripts to setup new hosts
 
-Populate env vars in `scripts/config.env`
+### Usage
 
-`./init.sh`
+```bash
+git clone https://github.com/ganchdev/vminit.git
+cd vminit
+```
+
+Populate env vars in `config.env`
+
+```bash
+chmod +x vminit/init.sh
+./vminit/init.sh
+```
+
+Done!
