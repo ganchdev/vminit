@@ -24,7 +24,6 @@ chown -R 1000:1000 "/data/$APP_NAME"
 groupadd --system --gid 1000 guvnor 2>/dev/null || echo "Group already exists"
 useradd --system --uid 1000 --gid 1000 --shell /bin/bash guvnor 2>/dev/null || echo "User already exists"
 
-
 # Ensure envsubst is available
 if ! command -v envsubst &> /dev/null; then
     echo "Installing envsubst (gettext-base)..."
