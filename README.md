@@ -12,8 +12,8 @@ cd vminit
 Populate env vars in `config.env`
 
 ```bash
-chmod +x vminit/init.sh
-./vminit/init.sh
+chmod +x init.sh
+.init.sh
 ```
 
 Done!
