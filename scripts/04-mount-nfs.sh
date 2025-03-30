@@ -12,15 +12,13 @@ fi
 
 # Validate required environment variables
 if [ -z "$NFS_SERVER" ]; then
-  echo "Error: NFS_SERVER environment variable is required"
-  echo "Example: NFS_SERVER=\"nfs-server.example.com:/exports/data\" $0"
-  exit 1
+  echo "NFS_SERVER not set — skipping NFS mount setup"
+  exit 0
 fi
 
 if [ -z "$MOUNT_POINT" ]; then
-  echo "Error: MOUNT_POINT environment variable is required"
-  echo "Example: MOUNT_POINT=\"/mnt/data\" $0"
-  exit 1
+  echo "MOUNT_POINT not set — skipping NFS mount setup"
+  exit 0
 fi
 
 # Optional environment variables
