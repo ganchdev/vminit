@@ -13,12 +13,12 @@ fi
 # Validate required environment variables
 if [ -z "$NFS_SERVER" ]; then
   echo "NFS_SERVER not set — skipping NFS mount setup"
-  exit 0
+  return 0 2>/dev/null || exit 0
 fi
 
 if [ -z "$MOUNT_POINT" ]; then
   echo "MOUNT_POINT not set — skipping NFS mount setup"
-  exit 0
+  return 0 2>/dev/null || exit 0
 fi
 
 # Optional environment variables
