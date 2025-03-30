@@ -1,5 +1,8 @@
 #!/bin/bash
-set -e  # Exit immediately if a command exits with non-zero status
+
+set -e
+
+chmod +x scripts/*.sh
 
 # Script location
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
