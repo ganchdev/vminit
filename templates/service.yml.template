@@ -1,0 +1,33 @@
+defaults:
+  image: $IMAGE_NAME
+  imageTag: $IMAGE_TAG
+  env:
+    # env variables listed here, i.e.
+    # RAILS_ENV: production
+    # SECRET_KEY_BASE: xxxxxxxxx
+    # etc...
+  mounts:
+    - host: /data/$APP_NAME/
+      container: /rails/storage/
+  network:
+    mode: host
+
+processes:
+  web:
+    command: ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+    env:
+      RAILS_SERVE_STATIC_FILES: "1"
+    caddy:
+      hostnames:
+        - $APP_HOST
+  # worker_main:
+  #   command: ["./bin/jobs"]
+  #   quantity: 2
+
+tasks:
+  migrate:
+    command: ["bundle", "exec", "rake", "db:migrate"]
+
+  console:
+    command: ["bundle", "exec", "rails", "console"]
+    interactive: true
