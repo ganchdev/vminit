@@ -25,9 +25,15 @@ processes:
   #   quantity: 2
 
 tasks:
+  dbsetup:
+    command: ["bundle", "exec", "rake", "db:setup"]
+
   migrate:
     command: ["bundle", "exec", "rake", "db:migrate"]
 
   console:
     command: ["bundle", "exec", "rails", "console"]
     interactive: true
+
+#callbacks:
+#  preDeployment: [migrate]
