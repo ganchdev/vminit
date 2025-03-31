@@ -6,7 +6,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Check if Docker is already installed
 if command -v docker &> /dev/null; then
-    echo "Docer is already installed — skipping installation"
+    echo "Docker is already installed — skipping installation"
     return 0 2>/dev/null || exit 0
 fi
 

@@ -12,6 +12,12 @@ fi
 
 echo "Setting up Guvnor for app: $APP_NAME"
 
+# Check if Docker is already installed
+if command -v guvnor &> /dev/null; then
+    echo "Guvnor is already installed — skipping installation"
+    return 0 2>/dev/null || exit 0
+fi
+
 # Install Guvnor
 curl -fsSL https://guvnor.k.io/install.sh | sudo bash
 guvnor init
@@ -33,12 +39,6 @@ fi
 # Render service template
 TEMPLATE_PATH="$SCRIPT_DIR/templates/service.yaml.template"
 OUTPUT_PATH="/etc/guvnor/services/$APP_NAME.yaml"
-
-# Check if output file already exists
-if [ -f "$OUTPUT_PATH" ]; then
-    echo "Service config already exists at $OUTPUT_PATH — skipping creation"
-    return 0 2>/dev/null || exit 0
-fi
 
 mkdir -p "$(dirname "$OUTPUT_PATH")"
 

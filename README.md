@@ -13,7 +13,7 @@ Populate env vars in `config.env`
 
 ```bash
 chmod +x init.sh
-.init.sh
+./init.sh
 ```
 
 Done!
