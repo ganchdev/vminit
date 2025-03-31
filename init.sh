@@ -4,17 +4,14 @@ set -e
 
 chmod +x scripts/*.sh
 
-# Script location
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 CONFIG_FILE="${SCRIPT_DIR}/config.env"
 SCRIPTS_DIR="${SCRIPT_DIR}/scripts"
 
-# Banner
 echo "================================"
 echo "  VM Host Initialization Script "
 echo "================================"
 
-# Load configuration
 if [ -f "$CONFIG_FILE" ]; then
     echo "Loading configuration from $CONFIG_FILE"
     source "$CONFIG_FILE"

@@ -4,10 +4,10 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
-# Update and upgrade packages
+echo "Installing Docker..."
+
 apt update
 
-# Install prerequisites
 apt install -y \
     ca-certificates \
     curl \
@@ -27,7 +27,6 @@ echo \
   https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
   | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# Update package index with Docker packages
 apt update
 
 # Install Docker Engine
@@ -48,7 +47,6 @@ EOF
 # Ensure Docker uses the systemd cgroup driver
 mkdir -p /etc/systemd/system/docker.service.d
 
-# Reload and restart Docker
 systemctl daemon-reload
 systemctl restart docker
 systemctl enable docker
