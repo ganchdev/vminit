@@ -33,6 +33,13 @@ fi
 # Render service template
 TEMPLATE_PATH="$SCRIPT_DIR/templates/service.yaml.template"
 OUTPUT_PATH="/etc/guvnor/services/$APP_NAME.yaml"
+
+# Check if output file already exists
+if [ -f "$OUTPUT_PATH" ]; then
+    echo "Service config already exists at $OUTPUT_PATH — skipping creation"
+    return 0 2>/dev/null || exit 0
+fi
+
 mkdir -p "$(dirname "$OUTPUT_PATH")"
 
 # Confirm the values are exported

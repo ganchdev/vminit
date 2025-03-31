@@ -111,10 +111,13 @@ touch "/var/log/$APP_NAME-db-backup.log"
 chmod 644 "/var/log/$APP_NAME-db-backup.log"
 
 # Add cron job
-echo "Setting up cron job for twice-daily backups..."
-(crontab -l 2>/dev/null | grep -v "backup-$APP_NAME-db.sh"; echo "# Backup $APP_NAME database at 8am and 8pm daily
-0 8 * * * /usr/local/bin/backup-$APP_NAME-db.sh
-0 20 * * * /usr/local/bin/backup-$APP_NAME-db.sh") | crontab -
+if ! sudo crontab -l | grep -q "backup-$APP_NAME-db.sh"; then
+    (sudo crontab -l 2>/dev/null; echo "# Backup $APP_NAME database at 8am and 8pm daily"; \
+     echo "$CRON_JOB1"; echo "$CRON_JOB2") | sudo crontab -
+    echo "Cron jobs added successfully."
+else
+    echo "Cron jobs already exist. Skipping."
+fi
 
 echo "DB backups setup complete!"
 echo

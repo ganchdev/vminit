@@ -26,7 +26,7 @@ MOUNT_OPTIONS=${MOUNT_OPTIONS:-"rw,relatime,vers=3"}
 MAKE_PERSISTENT=${MAKE_PERSISTENT:-"false"}
 
 # Display configuration
-echo "NFS Configuration:"
+echo "Mounting NFS with configuration:"
 echo "  Server: $NFS_SERVER"
 echo "  Mount Point: $MOUNT_POINT"
 echo "  Mount Options: $MOUNT_OPTIONS"
@@ -51,7 +51,8 @@ if mount | grep -q "$MOUNT_POINT"; then
   echo "NFS share is already mounted at $MOUNT_POINT"
   echo "Current mounts:"
   mount | grep nfs
-  exit 0
+  echo "...skipping..."
+  return 0 2>/dev/null || exit 0
 fi
 
 # Mount the NFS share
